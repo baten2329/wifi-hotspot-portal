@@ -1,0 +1,97 @@
+# This file contains error messages which are shown to the user when HTTP/HTTPS
+# login is used.
+# These messages can be changed to make the user interface more friendly, including
+# translations to different languages.
+#
+# Various variables can be used here as well. Most frequently used ones are:
+#   $(error-orig)   - original error message from hotspot
+#   $(ip)           - IP address of a client
+#   $(username)     - username of client trying to log in
+
+# internal-error
+# It should never happen. If it does, an error page will be shown
+# displaying this error message (error-orig will describe what has happened)
+
+internal-error = Internal error: $(error-orig)
+
+# config-error
+# Should never happen if the hotspot is configured properly.
+
+config-error = Configuration error: $(error-orig)
+
+# not-logged-in
+# Will happen if the status or logout page is requested by the user,
+# who is actually not logged in.
+
+not-logged-in = You are not logged in (IP: $(ip))
+
+# ippool-empty
+# IP address for the user is to be assigned from the IP pool, but there are no more
+# addresses in that pool.
+
+ippool-empty = Cannot assign IP address - no more free addresses from the pool.
+
+# shutting-down
+# When shutdown is executed, new clients are not accepted.
+
+shutting-down = Hotspot service is shutting down.
+
+# user-session-limit
+# If the user profile has a limit of shared-users, then this error will be shown
+# after reaching this limit.
+
+user-session-limit = Voucher/user code $(username) is currently active.
+
+# license-session-limit
+# Depending on the license number, the active hotspot clients are limited to
+# one or another amount. If this limit is reached, the following error is displayed.
+
+license-session-limit = Your voucher duration has expired: $(error-orig)
+
+# wrong-mac-username
+# If the username looks like a MAC address (12:34:56:78:9a:bc), but is not
+# a MAC address of this client, login is rejected.
+
+wrong-mac-username = Voucher/user code does not match ($(username)): This MAC address does not belong to you.
+
+# chap-missing
+# If the HTTP-CHAP login method is used, but the hotspot program does not receive
+# back an encrypted password, this error message is shown.
+
+chap-missing = Web browser did not send challenge response (try again, enable JavaScript).
+
+# invalid-username
+# Most general case of an invalid username or password. If the RADIUS server
+# has sent an error string with Access-Reject message, then it will
+# override this setting.
+
+invalid-username = Incorrect voucher/user code, please enter again correctly.
+
+# invalid-mac
+# Local users (on the hotspot server) can be bound to some MAC address. If login
+# from a different MAC is tried, this error message will be shown.
+
+invalid-mac = Voucher/user code $(username) cannot be activated from this MAC address.
+
+# uptime-limit, traffic-limit
+# For local hotspot users in case if limits are reached.
+
+uptime-limit = Voucher/user code $(username) has reached the time limit.
+traffic-limit = Voucher/user code $(username) has reached the quota limit.
+
+# radius-timeout
+# User is authenticated by the RADIUS server, but no response is received from it,
+# following error will be shown.
+
+radius-timeout = RADIUS server is not responding.
+
+# auth-in-progress
+# Authorization in progress. Client already has issued an authorization request
+# which is not yet complete.
+
+auth-in-progress = Already activated, please try again later.
+
+# radius-reply
+# Radius server returned some custom error message.
+
+radius-reply = $(error-orig)
